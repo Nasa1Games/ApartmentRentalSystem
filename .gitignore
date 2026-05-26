@@ -1,0 +1,41 @@
+## 1. Скомпилированный код (Build Output)
+[Bb]in/
+[Oo]bj/
+*.dll
+*.exe
+*.pdb
+*.xml
+*.log
+
+## 2. Настройки IDE (JetBrains Rider / VS)
+.idea/
+*.sln.iml
+*.csproj.user
+*.suo
+*.user
+*.rider
+
+## 3. Секреты и локальные конфиги
+appsettings.Local.json
+appsettings.Secrets.json
+*.secrets.json
+.env
+.env.local
+
+## 4. База данных
+*.db
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+*.backup
+
+
+## 5. System Files
+.DS_Store
+Thumbs.db
+.vs/
+
+## 6. NuGet
+packages/
+*.nupkg
