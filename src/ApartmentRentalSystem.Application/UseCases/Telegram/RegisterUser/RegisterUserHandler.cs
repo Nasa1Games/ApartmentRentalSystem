@@ -24,6 +24,8 @@ public class RegisterUserHandler
             // Пользователь уже зарегистрирован
             return RegisterUserResult.Success(existingUser, isNewRegistration: false);
         }
+        
+        var placeholderPhone = $"+0_{command.TelegramId}";
 
         // Создаём нового пользователя
         var newTenant = new Tenant(
@@ -32,7 +34,7 @@ public class RegisterUserHandler
             contact: new ContactInfo(
                 fullName: command.Username,
                 email: $"{command.Username}@telegram.local",
-                phone: string.Empty), // Телефон можно запросить позже
+                phone: placeholderPhone), // Телефон можно запросить позже
             userRole: UserRole.User,
             telegramId: command.TelegramId,
             isBlocked: false);

@@ -13,6 +13,8 @@ public static class DependencyInjection
         
         // Services
         services.AddScoped<ITelegramUserService, TelegramUserService>();
+        services.AddScoped<IApartmentService, ApartmentService>();
+		services.AddScoped<IBookingService, BookingService>();
         
         return services;
     }

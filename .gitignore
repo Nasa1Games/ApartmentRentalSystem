@@ -39,3 +39,6 @@ Thumbs.db
 ## 6. NuGet
 packages/
 *.nupkg
+
+appsettings.json
+
