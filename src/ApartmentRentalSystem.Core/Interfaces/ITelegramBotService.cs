@@ -6,5 +6,5 @@ public interface ITelegramBotService
     
     Task StopAsync(CancellationToken ct);  // Остановка
     
-    Task SendMessageAsync(long chatId, string text, CancellationToken ct = default);
+    // Task SendMessageAsync(long chatId, string text, CancellationToken ct = default);
 }

@@ -31,7 +31,7 @@ public static class Program
         var choice = Console.ReadKey(true).KeyChar;
         Console.WriteLine();
 
-        var cts = new CancellationTokenSource();
+        var cts = new CancellationTokenSource(); // позволяет безопасно завершать процессы
 
         try
         {
@@ -193,7 +193,6 @@ public static class Program
     private static async Task RunTelegramBotDemoAsync(IServiceProvider provider, CancellationToken ct)
     {
         var botService = provider.GetRequiredService<ITelegramBotService>();
-        var config = provider.GetRequiredService<IConfiguration>();
 
         Console.WriteLine("\n🤖 Запуск Telegram-бота...");
 

@@ -4,7 +4,7 @@ using ApartmentRentalSystem.Core.Interfaces;
 using ApartmentRentalSystem.Infrastructure.Persistence.Db;
 using ApartmentRentalSystem.Infrastructure.Persistence.Repositories;
 using ApartmentRentalSystem.Infrastructure.Telegram;
-using ApartmentRentalSystem.Application; // ← Новый using
+using ApartmentRentalSystem.Application;
 
 namespace ApartmentRentalSystem.Infrastructure;
 

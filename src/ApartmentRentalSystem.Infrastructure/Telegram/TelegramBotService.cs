@@ -14,35 +14,30 @@ namespace ApartmentRentalSystem.Infrastructure.Telegram;
 public class TelegramBotService : ITelegramBotService
 {
     private readonly TelegramBotClient _bot;
-    private readonly IConfiguration _config;
-    private readonly ITelegramUserService _userService; // ← Зависимость от Application!
+    private readonly ITelegramUserService _userService;
     private CancellationTokenSource? _cts;
     private bool _isRunning;
 
     public TelegramBotService(IConfiguration config, ITelegramUserService userService)
     {
-        _config = config;
         _userService = userService;
         
-        var token = _config["Telegram:BotToken"];
+        var token = config["Telegram:BotToken"];    // берем токен из конфига
         if (string.IsNullOrWhiteSpace(token))
             throw new InvalidOperationException("Не найден Telegram:BotToken в конфигурации");
             
-        _bot = new TelegramBotClient(token);
+        _bot = new TelegramBotClient(token);    // передаем токен в системную либу для создания бота
     }
 
     public async Task StartAsync(CancellationToken ct)
     {
         if (_isRunning) return;
-        
-        var me = await _bot.GetMe(ct);
-        System.Console.WriteLine($"✅ Бот подключен: @{me.Username}");
 
-        _cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+        _cts = CancellationTokenSource.CreateLinkedTokenSource(ct); // создает связь с токен
         
-        _bot.StartReceiving(
-            HandleUpdateAsync,
-            HandleErrorAsync,
+        _bot.StartReceiving(    // метод запускающий прием сообщений ботом
+            HandleUpdateAsync,  // в качестве параметров передается функция, для обработки входящих сообщений (всех обновлений)
+            HandleErrorAsync,   // обработчик ошибок
             new ReceiverOptions
             {
                 AllowedUpdates = new[] { UpdateType.Message, UpdateType.CallbackQuery }
@@ -57,7 +52,7 @@ public class TelegramBotService : ITelegramBotService
     {
         if (!_isRunning) return;
         
-        System.Console.WriteLine("🛑 Остановка бота...");
+        Console.WriteLine("🛑 Остановка бота...");
         
         if (_cts != null)
         {
@@ -75,7 +70,7 @@ public class TelegramBotService : ITelegramBotService
         var chatId = update.Message.Chat.Id;
         var username = update.Message.From?.Username ?? "User";
 
-        System.Console.WriteLine($"💬 Сообщение от {username} ({chatId}): {text}");
+        Console.WriteLine($"💬 Сообщение от {username} ({chatId}): {text}");
 
         switch (text.ToLower())
         {
@@ -121,6 +116,7 @@ public class TelegramBotService : ITelegramBotService
         return Task.CompletedTask;
     }
 
+    /*
     public async Task SendMessageAsync(long chatId, string text, CancellationToken ct = default)
     {
         try
@@ -132,4 +128,5 @@ public class TelegramBotService : ITelegramBotService
             System.Console.WriteLine($"❌ Ошибка отправки в чат {chatId}: {ex.Message}");
         }
     }
+    */
 }
