@@ -143,7 +143,7 @@ namespace ApartmentRentalSystem.AdminUI.Forms
             // dataGridViewApartments.DataSource = apartments;
 
             MessageBox.Show(
-                $"🚧 Фильтр применён (заглушка)\n" +
+                $"Фильтр применён (заглушка)\n" +
                 $"Этаж: {numericUpDownFloor.Value}\n" +
                 $"Подъезд: {numericUpDownEntrance.Value}\n" +
                 $"Вместимость: {numericUpDownCapacity.Value}", 

@@ -206,7 +206,7 @@ namespace ApartmentRentalSystem.AdminUI.Forms
                 return;
             }
 
-            // 🚧 НАПАРНИК: Здесь вызвать реальный сервис
+            // Здесь вызвать реальный сервис
             // var ids = selectedIds.Select(Guid.Parse).ToList();
             // await _bookingService.ApproveMultipleAsync(ids, CancellationToken.None);
             
@@ -235,7 +235,7 @@ namespace ApartmentRentalSystem.AdminUI.Forms
 
             if (!selectedIds.Any())
             {
-                MessageBox.Show("⚠Выберите заявки для отклонения!", "Внимание", 
+                MessageBox.Show("Выберите заявки для отклонения!", "Внимание", 
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
