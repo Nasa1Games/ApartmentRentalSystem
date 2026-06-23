@@ -1,10 +1,19 @@
+<<<<<<< Updated upstream
 ﻿using System;
 using System.Drawing;  
 using System.Windows.Forms;
+=======
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+using MediatR;  
+>>>>>>> Stashed changes
 using ApartmentRentalSystem.AdminUI.Forms;
 
 namespace ApartmentRentalSystem.AdminUI
 {
+<<<<<<< Updated upstream
     public class MainForm : Form 
     {
         public MainForm()
@@ -12,6 +21,18 @@ namespace ApartmentRentalSystem.AdminUI
             InitializeComponent();
         }
         
+=======
+    public class MainForm : Form
+    {
+        private readonly IServiceProvider _serviceProvider;
+
+        public MainForm(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+            InitializeComponent();
+        }
+
+>>>>>>> Stashed changes
         private void InitializeComponent()
         {
             Text = "Админ-панель";
@@ -29,9 +50,14 @@ namespace ApartmentRentalSystem.AdminUI
                 Location = new Point(150, 40)
             };
 
+<<<<<<< Updated upstream
             
             var btnApartments = CreateButton("Управление квартирами", new Point(150, 120), 300, 50);
             btnApartments.Click += btnApartments_Click;  // Привязка к методу
+=======
+            var btnApartments = CreateButton("Управление квартирами", new Point(150, 120), 300, 50);
+            btnApartments.Click += btnApartments_Click;
+>>>>>>> Stashed changes
 
             var btnBookings = CreateButton("Заявки на бронирование", new Point(150, 190), 300, 50);
             btnBookings.Click += btnBookings_Click;
@@ -61,31 +87,49 @@ namespace ApartmentRentalSystem.AdminUI
             };
         }
 
+<<<<<<< Updated upstream
         // Отдельные методы-обработчики, здесь должна быть логика
         private void btnApartments_Click(object? sender, EventArgs e)
         {
             // Здесь открыть форму управления квартирами с реальными данными
             var form = new ApartmentsForm();
+=======
+        private void btnApartments_Click(object? sender, EventArgs e)
+        {
+            var form = _serviceProvider.GetRequiredService<ApartmentsForm>();
+>>>>>>> Stashed changes
             form.Show();
         }
 
         private void btnBookings_Click(object? sender, EventArgs e)
         {
+<<<<<<< Updated upstream
             //  Здесь открыть форму заявок с подключением к IBookingService
             var form = new BookingsForm();
+=======
+            var form = _serviceProvider.GetRequiredService<BookingsForm>();
+>>>>>>> Stashed changes
             form.Show();
         }
 
         private void btnNotifications_Click(object? sender, EventArgs e)
         {
+<<<<<<< Updated upstream
             //  Здесь открыть журнал уведомлений
             var form = new NotificationLogForm();
+=======
+            var form = _serviceProvider.GetRequiredService<NotificationLogForm>();
+>>>>>>> Stashed changes
             form.Show();
         }
 
         private void btnExit_Click(object? sender, EventArgs e)
         {
+<<<<<<< Updated upstream
             Application.Exit();
+=======
+            System.Windows.Forms.Application.Exit();
+>>>>>>> Stashed changes
         }
     }
 }

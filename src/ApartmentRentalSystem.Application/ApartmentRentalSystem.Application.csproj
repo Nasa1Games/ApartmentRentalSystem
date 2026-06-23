@@ -12,7 +12,13 @@
     </ItemGroup>
 
     <ItemGroup>
+<<<<<<< Updated upstream
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="11.0.0-preview.4.26230.115" />
+=======
+        <PackageReference Include="Dapper" Version="2.1.35" />
+      <PackageReference Include="MediatR" Version="14.1.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.8" />
+>>>>>>> Stashed changes
     </ItemGroup>
 
 </Project>

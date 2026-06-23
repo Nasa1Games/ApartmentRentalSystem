@@ -25,11 +25,16 @@ public static class DependencyInjection
         services.AddScoped<IApartmentRepository, PostgresApartmentRepository>();
         services.AddScoped<IBookingRepository, PostgresBookingRepository>();
         services.AddScoped<ITenantRepository, PostgresTenantRepository>();
+<<<<<<< Updated upstream
         services.AddScoped<ITransactionRepository, PostgresTransactionRepository>();
         services.AddScoped<INotificationRepository, PostgresNotificationRepository>();
 
         // 4. Telegram Bot (теперь зависит от ITelegramUserService из Application)
         services.AddSingleton<ITelegramBotService, TelegramBotService>();
+=======
+        services.AddScoped<IBookingQueryRepository, PostgresBookingQueryRepository>();
+		services.AddScoped<INotificationDbConnectionFactory, NotificationDbConnectionFactoryAdapter>();
+>>>>>>> Stashed changes
 
         return services;
     }

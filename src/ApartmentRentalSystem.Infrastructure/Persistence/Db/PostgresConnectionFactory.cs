@@ -1,5 +1,7 @@
-using Microsoft.Extensions.Configuration;
+using System.Data;
 using Npgsql;
+using Microsoft.Extensions.Configuration;
+using ApartmentRentalSystem.Core.Interfaces;
 
 namespace ApartmentRentalSystem.Infrastructure.Persistence.Db;
 
