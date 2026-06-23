@@ -9,11 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BC5814EF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentRentalSystem.Application", "src\ApartmentRentalSystem.Application\ApartmentRentalSystem.Application.csproj", "{708F71F6-549C-4C28-B12C-F0FE4DCA741B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentRentalSystem.Console", "src\ApartmentRentalSystem.Console\ApartmentRentalSystem.Console.csproj", "{C8440E13-2B70-4A20-AB3C-2C1F42494B35}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentRentalSystem.Core", "src\ApartmentRentalSystem.Core\ApartmentRentalSystem.Core.csproj", "{8956C7A0-F4B2-4EFA-9125-E45A79C64B3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentRentalSystem.Infrastructure", "src\ApartmentRentalSystem.Infrastructure\ApartmentRentalSystem.Infrastructure.csproj", "{295C49B8-AD1E-4FDA-A435-43D26A692028}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentRentalSystem.Host", "src\ApartmentRentalSystem.Host\ApartmentRentalSystem.Host.csproj", "{9BE6719C-17C5-406B-8861-2122B50BA2A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentRentalSystem.Bot", "src\ApartmentRentalSystem.Bot\ApartmentRentalSystem.Bot.csproj", "{5F697EB1-A586-48D1-98FD-34F7A4D245DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +27,6 @@ Global
 		{708F71F6-549C-4C28-B12C-F0FE4DCA741B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{708F71F6-549C-4C28-B12C-F0FE4DCA741B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{708F71F6-549C-4C28-B12C-F0FE4DCA741B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8440E13-2B70-4A20-AB3C-2C1F42494B35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8440E13-2B70-4A20-AB3C-2C1F42494B35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8440E13-2B70-4A20-AB3C-2C1F42494B35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8440E13-2B70-4A20-AB3C-2C1F42494B35}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8956C7A0-F4B2-4EFA-9125-E45A79C64B3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8956C7A0-F4B2-4EFA-9125-E45A79C64B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8956C7A0-F4B2-4EFA-9125-E45A79C64B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,11 +35,20 @@ Global
 		{295C49B8-AD1E-4FDA-A435-43D26A692028}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{295C49B8-AD1E-4FDA-A435-43D26A692028}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{295C49B8-AD1E-4FDA-A435-43D26A692028}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE6719C-17C5-406B-8861-2122B50BA2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE6719C-17C5-406B-8861-2122B50BA2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE6719C-17C5-406B-8861-2122B50BA2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE6719C-17C5-406B-8861-2122B50BA2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F697EB1-A586-48D1-98FD-34F7A4D245DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F697EB1-A586-48D1-98FD-34F7A4D245DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F697EB1-A586-48D1-98FD-34F7A4D245DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F697EB1-A586-48D1-98FD-34F7A4D245DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{708F71F6-549C-4C28-B12C-F0FE4DCA741B} = {33B2C736-E7E0-406A-9955-6C2243D0DF34}
-		{C8440E13-2B70-4A20-AB3C-2C1F42494B35} = {33B2C736-E7E0-406A-9955-6C2243D0DF34}
 		{8956C7A0-F4B2-4EFA-9125-E45A79C64B3D} = {33B2C736-E7E0-406A-9955-6C2243D0DF34}
 		{295C49B8-AD1E-4FDA-A435-43D26A692028} = {33B2C736-E7E0-406A-9955-6C2243D0DF34}
+		{9BE6719C-17C5-406B-8861-2122B50BA2A5} = {33B2C736-E7E0-406A-9955-6C2243D0DF34}
+		{5F697EB1-A586-48D1-98FD-34F7A4D245DB} = {33B2C736-E7E0-406A-9955-6C2243D0DF34}
 	EndGlobalSection
 EndGlobal

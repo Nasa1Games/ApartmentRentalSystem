@@ -1,5 +1,5 @@
 using ApartmentRentalSystem.Core.Entities;
-using ApartmentRentalSystem.Core.Specifications;
+using ApartmentRentalSystem.Core.FilterCriteria;
 
 namespace ApartmentRentalSystem.Core.Interfaces;
 

@@ -10,7 +10,5 @@ public interface ITenantRepository
     Task<IEnumerable<Tenant>> GetAllAsync();
     Task AddAsync(Tenant tenant);
     Task UpdateAsync(Tenant tenant);
-    Task UpdateTelegramIdAsync(Guid id, long telegramId);
-    Task BlockAsync(Guid id);
-    Task UnblockAsync(Guid id);
+    Task DeleteAsync(Guid id);
 }

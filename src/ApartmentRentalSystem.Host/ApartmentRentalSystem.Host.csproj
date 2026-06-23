@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>ApartmentRentalSystem.Console</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.8" />
+        
+        <ProjectReference Include="..\ApartmentRentalSystem.Application\ApartmentRentalSystem.Application.csproj" />
+        <ProjectReference Include="..\ApartmentRentalSystem.Core\ApartmentRentalSystem.Core.csproj" />
+        <ProjectReference Include="..\ApartmentRentalSystem.Infrastructure\ApartmentRentalSystem.Infrastructure.csproj" />
+        <ProjectReference Include="..\ApartmentRentalSystem.Bot\ApartmentRentalSystem.Bot.csproj" />
+
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="10.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
+</Project>

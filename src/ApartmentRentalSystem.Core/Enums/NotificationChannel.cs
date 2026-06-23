@@ -1,8 +1,7 @@
-namespace ApartmentRentalSystem.Core.ValueObjects;
+namespace ApartmentRentalSystem.Core.Enums;
 
 public enum NotificationChannel
 {
-    WinForms = 0,
-    Telegram = 1,
-    Email = 2
+    Telegram = 0,
+    Email = 1
 }

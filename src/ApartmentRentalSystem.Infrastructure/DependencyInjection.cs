@@ -1,10 +1,12 @@
+using ApartmentRentalSystem.Application;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ApartmentRentalSystem.Core.Interfaces;
-using ApartmentRentalSystem.Infrastructure.Persistence.Db;
-using ApartmentRentalSystem.Infrastructure.Persistence.Repositories;
-using ApartmentRentalSystem.Infrastructure.Telegram;
-using ApartmentRentalSystem.Application;
+using ApartmentRentalSystem.Infrastructure.Db;
+using ApartmentRentalSystem.Infrastructure.Db.Connection;
+using ApartmentRentalSystem.Infrastructure.Db.Repositories;
+using ApartmentRentalSystem.Infrastructure.Messaging;
+using ApartmentRentalSystem.Application.Interfaces;
 
 namespace ApartmentRentalSystem.Infrastructure;
 
@@ -14,23 +16,27 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        // 1. Сначала регистрируем Application-слой
-        services.AddApplication();
-        
-        // 2. Фабрика подключений
-        services.AddSingleton<IDbConnectionFactory>(sp =>
+        // 1. Фабрика подключений
+        services.AddSingleton<IDbConnectionFactory>(
             new PostgresConnectionFactory(configuration));
-
-        // 3. Репозитории
+        
+        // 2. UnitOfWork и репозитории
+        services.AddScoped<IUnitOfWork, PostgresUnitOfWork>();
+        
         services.AddScoped<IApartmentRepository, PostgresApartmentRepository>();
         services.AddScoped<IBookingRepository, PostgresBookingRepository>();
         services.AddScoped<ITenantRepository, PostgresTenantRepository>();
-        services.AddScoped<ITransactionRepository, PostgresTransactionRepository>();
-        services.AddScoped<INotificationRepository, PostgresNotificationRepository>();
+        services.AddScoped<IBookingQueryRepository, PostgresBookingQueryRepository>();
 
-        // 4. Telegram Bot (теперь зависит от ITelegramUserService из Application)
-        services.AddSingleton<ITelegramBotService, TelegramBotService>();
-
+        // 3. Отправка уведомлений.
+        // Регистрируем Роутер как основной интерфейс отправки
+        services.AddScoped<INotificationSender, NotificationRouter>();
+        
+        // Регистрируем конкретные реализации отправки
+        services.AddScoped<ITelegramSender, TelegramSender>();
+        services.AddScoped<IEmailSender, EmailSender>();
+        
+        
         return services;
     }
 }

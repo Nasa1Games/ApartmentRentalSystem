@@ -1,4 +1,4 @@
-namespace ApartmentRentalSystem.Core.ValueObjects;
+namespace ApartmentRentalSystem.Core.Enums;
 
 public enum NotificationStatus
 {

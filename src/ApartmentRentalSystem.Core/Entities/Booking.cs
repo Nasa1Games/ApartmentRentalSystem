@@ -1,22 +1,24 @@
+using ApartmentRentalSystem.Core.Enums;
+using ApartmentRentalSystem.Core.Events;
 using ApartmentRentalSystem.Core.ValueObjects;
+using MediatR;
+
 
 namespace ApartmentRentalSystem.Core.Entities;
 
-public class Booking
+public class Booking : Entity
 {
     public Guid Id { get; private set; }
     public Guid TenantId { get; private set; }
     public Guid ApartmentId { get; private set; }
     public DateRange Period { get; private set; }
-    public BookingStatus Status { get; private set; }
     public Money TotalPrice { get; private set; }
     public Money Deposit { get; private set; }
+    public BookingStatus Status { get; private set; }
     public string? CancellationReason { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
-
-    private Booking() { } // Для Dapper
-
+    
     public Booking(
         Guid id, 
         Guid tenantId, 
@@ -58,15 +60,25 @@ public class Booking
         CreatedAt = DateTime.UtcNow;
     }
 
+    /// <summary>
+    /// Отмечает аренду подтвержденной (согласованной)
+    /// </summary>
     public void Approve()
     {
         if (Status != BookingStatus.Pending)
-            throw new InvalidOperationException("Можно подтвердить только_pending бронь");
+            throw new InvalidOperationException("Подтверждать можно только pending бронь");
         
         Status = BookingStatus.Approved;
         UpdatedAt = DateTime.UtcNow;
+        
+        AddDomainEvent(new BookingApprovedEvent(
+            Id, TenantId, ApartmentId, DateTime.UtcNow, Period, TotalPrice
+        ));
     }
 
+    /// <summary>
+    /// Отказ клиенту в аренде
+    /// </summary>
     public void Reject(string reason)
     {
         if (Status != BookingStatus.Pending)
@@ -75,8 +87,15 @@ public class Booking
         Status = BookingStatus.Rejected;
         CancellationReason = reason;
         UpdatedAt = DateTime.UtcNow;
+        
+        AddDomainEvent(new BookingRejectedEvent(
+            Id, TenantId, ApartmentId, reason, DateTime.UtcNow
+        ));
     }
-
+    
+    /// <summary>
+    /// Отказ клиентом от аренды
+    /// </summary>
     public void Cancel(string reason)
     {
         if (Status is not (BookingStatus.Pending or BookingStatus.Approved))
@@ -85,8 +104,15 @@ public class Booking
         Status = BookingStatus.Cancelled;
         CancellationReason = reason;
         UpdatedAt = DateTime.UtcNow;
+        
+        AddDomainEvent(new BookingCancelledEvent(
+            Id, TenantId, ApartmentId, reason, DateTime.UtcNow
+        ));
     }
-
+    
+    /// <summary>
+    /// Отмечает сделку аренды завершенной
+    /// </summary>
     public void Complete()
     {
         if (Status != BookingStatus.Approved)
@@ -94,5 +120,10 @@ public class Booking
         
         Status = BookingStatus.Completed;
         UpdatedAt = DateTime.UtcNow;
+        
+        // Опционально можно добавить уведомление админу
+        // AddDomainEvent(new BookingCompletedEvent(
+        //     Id, TenantId, ApartmentId, DateTime.UtcNow, TotalPrice
+        // ));
     }
 }
